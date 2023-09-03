@@ -3,6 +3,7 @@ package controllers
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
+	"postgresql/processor"
 )
 
 type Body struct {
@@ -15,8 +16,8 @@ func PostQueryController(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-
 	query := requestBody.Query
+	response := processor.QueryProcessor(query)
 
-	c.IndentedJSON(http.StatusOK, gin.H{"query": query})
+	c.JSON(http.StatusOK, response)
 }
