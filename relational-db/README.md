@@ -1,4 +1,4 @@
-# postgresql
+# relational-db
 
 ### Server:
 - Framework - [Gin](https://gin-gonic.com/https:/)

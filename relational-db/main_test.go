@@ -1,4 +1,4 @@
-package postgresql
+package relational-db
 
 import (
     "testing"

@@ -1,7 +1,7 @@
 package main 
 
 import (
-	"postgresql/server"
+	"relational-db/server"
 )
 
 func main() {
