@@ -1,7 +1,9 @@
-# PostgreSQL
+# postgresql
 
-### Notes
-- [Architecture](https://www.figma.com/file/atoOaYx2SRoLndiJGL5fC3/Load-Balancer?type=whiteboard&node-id=0%3A1&t=BDaVHecDr0DoHMvo-1)
+### Server:
+- Framework - [Gin](https://gin-gonic.com/https:/)
+- [Project Structure](https://github.com/golang-standards/project-layout)
 
-### Important Links
-- [PostgreSQL/Architecture](https://en.wikibooks.org/wiki/PostgreSQL/Architecture#:~:text=PostgreSQL%20implements%20a%20client%2Dserver,the%20requested%20data%20from%20there.)
+### Testing
+- Framework - [Goblin](https://github.com/franela/goblin)
+- [Guidelines](https://www.toptal.com/go/your-introductory-course-to-testing-with-gohttps:/)
