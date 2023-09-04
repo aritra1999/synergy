@@ -3,7 +3,7 @@ package controllers
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
-	"postgresql/processor"
+	"relational-db/processor"
 )
 
 type Body struct {
