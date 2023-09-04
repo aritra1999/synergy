@@ -1,7 +1,7 @@
 ### Components to build
-- [ ] Load balancer - IN PROGRESS
+- [ ] Load balancer 🚧
     - [ ] With rate limiting maybe
-- [ ] Database - IN PROGRESS
+- [ ] Database 🚧
     - [ ] Relational database - Postgres / MySQL
     - [ ] Document databases / NoSQL - MonogoDB / DynamoDB
 - [ ] Search engines - Lucene / Elastic search (Maybe)
