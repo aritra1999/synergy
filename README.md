@@ -18,5 +18,5 @@
 - [ ]  Twitter
 - [ ]  Snapchat
 - [ ]  Telegram 
-- [ ]  [Youtube](https://www.figma.com/file/1SUppV9fgzNv7FsvaDxQCN/YouTube?type=whiteboard&t=EkGbAZblIIFEe4Pn-6)https://www.figma.com/file/1SUppV9fgzNv7FsvaDxQCN/YouTube?type=whiteboard&t=EkGbAZblIIFEe4Pn-6
+- [ ]  [Youtube](https://www.figma.com/file/1SUppV9fgzNv7FsvaDxQCN/YouTube?type=whiteboard&t=EkGbAZblIIFEe4Pn-6)
 - [ ]  Uber
