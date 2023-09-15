@@ -1,7 +1,7 @@
 # Synergy 
 This is a collection of backend infrastructure systems built from scratch using Golang. 
 
-## Components to build
+## 🏗️ Components to build
 - [ ] 🚧 [Load balancer](https://github.com/aritra1999/synergy/tree/master/load-balancer) 
     - [ ] With rate limiting maybe
 - [ ] 🚧 Database 
@@ -17,12 +17,12 @@ This is a collection of backend infrastructure systems built from scratch using 
 - [ ] Logging
 - [ ] Monitoring
 
-## Systems to cover
+## ⚙️ Systems to cover
 - [ ]  Twitter
 - [ ]  Snapchat
 - [ ]  Telegram 
 - [ ]  [Youtube](https://www.figma.com/file/1SUppV9fgzNv7FsvaDxQCN/YouTube?type=whiteboard&t=EkGbAZblIIFEe4Pn-6)
 - [ ]  Uber
 
-## Learnings
+## 📖 Learnings [🔗](https://github.com/aritra1999/synergy/blob/master/LEARNINGS.md)
 - Setting up mono-repos
