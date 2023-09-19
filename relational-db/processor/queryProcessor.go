@@ -1,23 +1,43 @@
 package processor
 
-import "relational-db/parser"
+import (
+	"errors"
+	"strings"
+)
 
-type ResponseSuccess struct {
-	Query       string   `json:"query"`
-	QueryTokens []string `json:"queryTokens"`
-	Response	string   `json:"response"`
+type Response struct {
+	Response    string    `json:"response"`
+	Query       string    `json:"query"`
+	Statement   Statement `json:"statement"`
+	QueryTokens []string  `json:"queryTokens"`
 }
 
-type ResponseError struct {
-	Query string `json:"query"`
-	Error string `json:"error"`
+type Statement struct {
+	Type string
 }
 
-func QueryProcessor(query string) Response {
+var POSSIBLE_COMMANDS = []string{"create", "insert", "select", "update", "delete", "alter", "drop", "truncate", "describe", "show"}
+
+func PrepareStatement(query string) (Statement, error) {
+	for _, command := range POSSIBLE_COMMANDS {
+		if strings.Contains(strings.ToLower(query), command) {
+			return Statement{Type: command}, nil
+		}
+	}
+
+	return Statement{}, errors.New("invalid command")
+}
+
+func QueryProcessor(query string) (Response, error) {
 	var response Response
+	statement, err := PrepareStatement(query)
+
+	if err != nil {
+		return response, err
+	}
 
 	response.Query = query
-	response.QueryTokens = parser.Tokenize(query)
+	response.Statement = statement
 
-	return response
+	return response, nil
 }
