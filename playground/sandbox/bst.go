@@ -54,7 +54,5 @@ func main() {
 	bst.insert(8)
 	bst.insert(3)
 	bst.insert(12)
-
 	printPreOrder(bst.root)
-
 }
