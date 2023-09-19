@@ -3,7 +3,6 @@ package controllers
 import (
 	"net/http"
 	"relationalDb/processor"
-
 	"github.com/gin-gonic/gin"
 )
 
