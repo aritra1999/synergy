@@ -1,4 +1,4 @@
-# relational-db
+# relationalDb
 
 ### Server:
 - Framework - [Gin](https://gin-gonic.com/https:/)
