@@ -15,6 +15,7 @@ To fill up these gaps, I would like to get to know these technologies better by 
 - [ ] Version Controll - Git 
 - [ ] Caching services - Redis
 - [ ] Compression Library
+- [ ] Nginx
 - [ ] Blob storage
 - [ ] DNS
 - [ ] Logging
