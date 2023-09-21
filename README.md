@@ -1,5 +1,8 @@
 # Synergy 
-This is a collection of backend infrastructure systems built from scratch using Golang. 
+> Why?
+> As devs we use technologies like databases, search engines, storages, etc. But most of these technologies are black boxes to us.
+
+To fill up these gaps, I would like to get to know these technologies better by building these components from scratch using Golang. 
 
 ## 🏗️ Components to build
 - [ ] 🚧 [Load balancer](https://github.com/aritra1999/synergy/tree/master/load-balancer) 
