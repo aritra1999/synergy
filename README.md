@@ -8,7 +8,7 @@ To fill up these gaps, I would like to get to know these technologies better by 
 - [ ] 🚧 [Load balancer](https://github.com/aritra1999/synergy/tree/master/load-balancer) 
     - [ ] With rate limiting maybe
 - [ ] 🚧 Database 
-    - [ ] 🚧 [Relational database - Postgres / MySQL](https://github.com/aritra1999/synergy/tree/master/postgresql)
+    - [ ] 🚧 [Relational database - SQLite / Postgres / MySQL](https://github.com/aritra1999/synergy/tree/master/relational-db)
     - [ ] Document databases / NoSQL - MonogoDB / DynamoDB
 - [ ] Search engines - Lucene / Elastic search (Maybe)
 - [ ] Message Queue (Brokers) - Kafka
