@@ -3,16 +3,13 @@ package controllers
 import (
 	"fmt"
 	"net/http"
+	"scout/core"
 
 	"github.com/gin-gonic/gin"
 )
 
 type PostIngestControllerBody struct {
-	Data []Entry `json:"data"`
-}
-
-type Entry struct {
-	Entry map[string]interface{} 
+	Data []core.Entry `json:"data"`
 }
 
 
@@ -23,5 +20,16 @@ func PostIngestController(c *gin.Context) {
 		return 
 	}
 
-	c.JSON(http.StatusOK, gin.H{"message": "Works fine"})
+	ingested := 0
+	total := len(body.Data)
+
+	for _, entry := range body.Data {
+		if err := core.Ingest(entry); err == nil {
+			ingested++
+		}
+	}
+
+	c.JSON(http.StatusOK, gin.H{"message": fmt.Sprintf("Ingested %d / %d", ingested, total)})
 }
+
+ 
