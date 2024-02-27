@@ -15,6 +15,9 @@ type PostIndexControllerBody struct {
 }
 
 
+func GetIndexController(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{"message": "Getting index!"})
+}
 
 func PostIndexController(c *gin.Context) {
 	
