@@ -9,6 +9,7 @@ import (
 )
 
 type PostIngestControllerBody struct {
+	Index string `json:"index"`
 	Data []core.Entry `json:"data"`
 }
 
