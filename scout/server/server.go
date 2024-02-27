@@ -17,6 +17,8 @@ func Init() *gin.Engine {
 	// router.Use(middlewares.AuthMiddleware())
 	
 	router.GET("/health", controllers.HealthController)
+	router.GET("/index/:id", controllers.GetIndexController)
+	router.POST("/index", controllers.PostIndexController)
 	router.POST("/ingest", controllers.PostIngestController)
 	
 	return router
