@@ -13,7 +13,7 @@ var DB *gorm.DB
 
 func ConnectDatabase() {
 	var err error
-	DB, err = gorm.Open(sqlite.Open("scout.db"), &gorm.Config{})
+	DB, err = gorm.Open(sqlite.Open("scout.sqlite"), &gorm.Config{})
 
 	if err != nil {
 		fmt.Println("Cannot connect to database ")
@@ -24,6 +24,7 @@ func ConnectDatabase() {
 }
 
 func MigrateTables() {
+	DB.AutoMigrate(&Index{})
 	DB.AutoMigrate(&Document{})
 }
 

@@ -3,15 +3,16 @@ package models
 import (
 	"encoding/json"
 	"time"
+
+	"gorm.io/gorm"
 )
 
 type Document struct {
-	ID        	string 				`gorm:"primaryKey"`
+	gorm.Model
 	Source	  	json.RawMessage 	`gorm:"type:json"`
 	Index     	string 
 	Type      	string 
 	CreatedAt 	time.Time
-	UpdatedAt 	time.Time
 }
 
 func (document *Document) Insert() (*Document, error) {
