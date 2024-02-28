@@ -12,6 +12,7 @@ import (
 type PostIndexControllerBody struct {
 	Name string `json:"name"`
 	Description string `json:"description"`
+	Slug string `json:"slug,omitempty"`
 }
 
 
@@ -20,7 +21,6 @@ func GetIndexController(c *gin.Context) {
 }
 
 func PostIndexController(c *gin.Context) {
-	
 	var err error
 	var body PostIndexControllerBody
 
@@ -33,14 +33,19 @@ func PostIndexController(c *gin.Context) {
 		Name: body.Name, 
 		Description: body.Description, 
 		Status: "active",
-		Slug: core.CreateSlug(body.Name),
+	}
+
+	if body.Slug != "" {
+		index.Slug = body.Slug
+	} else {
+		index.Slug = core.CreateSlug(body.Name)
 	}
 
 	var createdIndex *models.Index
 	createdIndex, err = index.Insert()
 
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"message": "Failed to add new index!"})
+		c.JSON(http.StatusInternalServerError, gin.H{"message": "Failed to add new index!", "error": err.Error()})
 		return
 	}
 
