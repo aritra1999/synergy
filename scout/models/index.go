@@ -6,10 +6,10 @@ import (
 
 type Index struct {
 	gorm.Model
-	Name        string `gorm:"type:varchar(100);not null";json:"name"`
-	Description string `gorm:"type:varchar(255);not null";json:"description"`
-	Slug 	  	string `gorm:"type:varchar(100);not null;unique";json:"slug"`
-	Status      string `gorm:"type:varchar(20);not null";json:"status"`
+	Name        string `json:"name";gorm:"type:varchar(100);not null"`
+	Description string `json:"description";gorm:"type:varchar(255);not null"`
+	Slug 	  	string `json:"slug";gorm:"type:varchar(100);not null;unique"`
+	Status      string `json:"status";gorm:"type:varchar(20);not null"`
 }
 
 

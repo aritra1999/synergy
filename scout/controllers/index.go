@@ -10,11 +10,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type PostIndexControllerBody struct {
-	Name string `json:"name"`
-	Description string `json:"description"`
-	Slug string `json:"slug,omitempty"`
-}
+
 
 func GetIndexByIdController(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
@@ -38,6 +34,12 @@ func GetIndexesController(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{"indexes": indexes})
+}
+
+type PostIndexControllerBody struct {
+	Name string `json:"name"`
+	Description string `json:"description"`
+	Slug string `json:"slug,omitempty"`
 }
 
 func PostIndexController(c *gin.Context) {
