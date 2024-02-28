@@ -1,6 +1,6 @@
 # Synergy 
 > Why?
-> As devs we use technologies like databases, search engines, storages, etc. But most of these technologies are black boxes to us.
+> As devs we use technologies like databases, search engines, storage, etc. But most of these technologies are black boxes to us.
 
 To fill up these gaps, I would like to get to know these technologies better by building these components from scratch using Golang. 
 
@@ -10,7 +10,7 @@ To fill up these gaps, I would like to get to know these technologies better by 
 - [ ] 🚧 Database 
     - [ ] 🚧 [Relational database - SQLite / Postgres / MySQL](https://github.com/aritra1999/synergy/tree/master/relational-db)
     - [ ] Document databases / NoSQL - MonogoDB / DynamoDB
-- [ ] Search engines - Lucene / Elastic search (Maybe)
+- [ ] 🚧 Search engines - Lucene / Elastic search (https://github.com/aritra1999/synergy/tree/master/load-balancer) 
 - [ ] Message Queue (Brokers) - Kafka
 - [ ] Version Controll - Git 
 - [ ] Caching services - Redis
