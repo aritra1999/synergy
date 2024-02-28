@@ -2,8 +2,8 @@ package server
 
 import (
 	"github.com/gin-gonic/gin"
-	// "relational-db/middlewares"
-	"relational-db/controllers"
+	// "relationalDb/middlewares"
+	"relationalDb/controllers"
 )
 
 func Init() *gin.Engine {

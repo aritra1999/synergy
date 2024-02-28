@@ -1,4 +1,4 @@
-module relational-db
+module relationalDb
 
 go 1.21
 

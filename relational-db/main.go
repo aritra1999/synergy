@@ -1,7 +1,7 @@
-package main 
+package relationalDb
 
 import (
-	"relational-db/server"
+	"relationalDb/server"
 )
 
 func main() {

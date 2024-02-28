@@ -1,9 +1,9 @@
 package controllers
 
 import (
-	"github.com/gin-gonic/gin"
 	"net/http"
-	"relational-db/processor"
+	"relationalDb/processor"
+	"github.com/gin-gonic/gin"
 )
 
 type Body struct {
@@ -17,7 +17,12 @@ func PostQueryController(c *gin.Context) {
 		return
 	}
 	query := requestBody.Query
-	response := processor.QueryProcessor(query)
+	response, err := processor.QueryProcessor(query)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
 
 	c.JSON(http.StatusOK, response)
 }
