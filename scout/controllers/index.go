@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"scout/core"
 	"scout/models"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
@@ -15,9 +16,28 @@ type PostIndexControllerBody struct {
 	Slug string `json:"slug,omitempty"`
 }
 
+func GetIndexByIdController(c *gin.Context) {
+	id, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"message": "Invalid id!"})
+	}
 
-func GetIndexController(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{"message": "Getting index!"})
+	index, err := models.FindById(id)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"message": "Failed to get index!", "error": err.Error()})
+	}
+
+	c.JSON(http.StatusOK, gin.H{"index": index})
+}
+
+func GetIndexesController(c *gin.Context) {
+	indexes, err := models.FindAll()
+
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"message": "Failed to get indexes!", "error": err.Error()})
+	}
+
+	c.JSON(http.StatusOK, gin.H{"indexes": indexes})
 }
 
 func PostIndexController(c *gin.Context) {

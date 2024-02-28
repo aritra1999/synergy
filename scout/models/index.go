@@ -6,10 +6,10 @@ import (
 
 type Index struct {
 	gorm.Model
-	Name        string `gorm:"type:varchar(100);not null"`
-	Description string
-	Slug 	  	string `gorm:"type:varchar(100);not null;unique"`
-	Status      string `gorm:"type:varchar(20);not null"`
+	Name        string `gorm:"type:varchar(100);not null";json:"name"`
+	Description string `gorm:"type:varchar(255);not null";json:"description"`
+	Slug 	  	string `gorm:"type:varchar(100);not null;unique";json:"slug"`
+	Status      string `gorm:"type:varchar(20);not null";json:"status"`
 }
 
 
@@ -38,7 +38,7 @@ func (index *Index) Delete() (*Index, error) {
 }
 
 
-func (index *Index) FindAll() ([]Index, error) {
+func FindAll() ([]Index, error) {
 	var indexes []Index
 	if err := DB.Find(&indexes).Error; err != nil {
 		return []Index{}, err
@@ -47,10 +47,11 @@ func (index *Index) FindAll() ([]Index, error) {
 	return indexes, nil
 }
 
-func (index *Index) FindById() (*Index, error) {
-	if err := DB.Where("id = ?", index.ID).First(&index).Error; err != nil {
+func FindById(id int) (*Index, error) {
+	var index Index
+	if err := DB.Where("id = ?", id).First(&index).Error; err != nil {
 		return &Index{}, err
 	}
-
-	return index, nil
+	
+	return &index, nil
 }

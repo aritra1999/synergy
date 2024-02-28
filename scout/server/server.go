@@ -18,7 +18,8 @@ func Init() *gin.Engine {
 	
 	router.GET("/health", controllers.HealthController)
 
-	router.GET("/index/:id", controllers.GetIndexController)
+	router.GET("/index/:id", controllers.GetIndexByIdController)
+	router.GET("/index", controllers.GetIndexesController)
 	router.POST("/index", controllers.PostIndexController)
 	
 	router.POST("/ingest", controllers.PostIngestController)
