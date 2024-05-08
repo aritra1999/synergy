@@ -1,10 +1,7 @@
-package relationalDb
+package main
 
-import (
-	"relationalDb/server"
-)
 
 func main() {
-	server := server.Init()
+	server := Init()
 	server.Run(":8000")
 }
