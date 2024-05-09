@@ -5,14 +5,25 @@ import (
 	"os"
 )
 
-func ReadSchema() []map[string]interface{} {
-	file, _ := os.Open("./schema.json")
-	defer file.Close()
+func ReadFile(fileName string) ([]byte, error) {
+	content, err := os.ReadFile(fileName)
+	if err != nil {
+		return nil, err
+	}
 
-	decoder := json.NewDecoder(file)
+	return content, nil
+}
 
-	filteredData := []map[string]interface{}{}
+func WriteFile(fileName string, content any) error {
+	data, err := json.Marshal(content)
+	if err != nil {
+		return err
+	}
 
-	decoder.Token()
-	return filteredData
+	err = os.WriteFile(fileName, data, 0644)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
