@@ -1,6 +1,7 @@
-package commons
+package tests
 
 import (
+	"gordb/commons"
 	"testing"
 
 	. "github.com/franela/goblin"
@@ -10,7 +11,7 @@ func Test(t *testing.T) {
 	g := Goblin(t)
 	g.Describe("Tree", func() {
 		g.It("Test insert nil root", func() {
-			tree := NewTree()
+			tree := commons.NewTree()
 
 			key := 1
 			value := []byte("test")
