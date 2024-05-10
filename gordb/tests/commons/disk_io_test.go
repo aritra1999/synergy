@@ -24,6 +24,10 @@ func TestDiskIo(t *testing.T) {
 	}
 
 	var setUp = func() {
+		if err := os.Mkdir(storePath, 0755); err != nil && !os.IsExist(err) {
+			t.Errorf("%s", err)
+		}
+
 		if err := os.Mkdir(testStorePath, 0755); err != nil && !os.IsExist(err) {
 			t.Errorf("%s", err)
 		}
