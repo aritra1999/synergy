@@ -7,7 +7,7 @@ import (
 	. "github.com/franela/goblin"
 )
 
-func Test(t *testing.T) {
+func TestBTree(t *testing.T) {
 	g := Goblin(t)
 	g.Describe("Tree", func() {
 		g.It("Test insert nil root", func() {
