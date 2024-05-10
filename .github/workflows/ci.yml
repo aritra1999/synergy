@@ -2,39 +2,37 @@ name: CI
 
 on:
   push:
-    branches: [ "master" ]
+    branches: ["master"]
   pull_request:
-    branches: [ "master" ]
+    branches: ["master"]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Set up Go
-      uses: actions/setup-go@v4
-      with:
-        go-version: '1.22'
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: "1.22"
 
-    - name: Build
-      run: go build -v ./...
-
-jobs:
+      - name: Build
+        run: go build -v ./...
   test:
     name: Test
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        directory: ['gordb', 'scout']
+        directory: ["gordb", "scout"]
     steps:
-    - name: Check out code into the Go module directory
-      uses: actions/checkout@v2
+      - name: Check out code into the Go module directory
+        uses: actions/checkout@v2
 
-    - name: Set up Go
-      uses: actions/setup-go@v2
-      with:
-        go-version: '1.22'
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: "1.22"
 
-    - name: Test Go directory
-      run: go test ./${{ matrix.directory }}/...
+      - name: Test Go directory
+        run: go test ./${{ matrix.directory }}/...
