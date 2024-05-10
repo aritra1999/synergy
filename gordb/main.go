@@ -1,6 +1,14 @@
 package main
 
-import "gordb/server"
+import (
+	"fmt"
+	"gordb/server"
+)
+
+func init() {
+	fmt.Println("Initializing server...")
+	server.CheckDirs()
+}
 
 func main() {
 	server := server.Init()
