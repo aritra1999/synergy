@@ -6,13 +6,11 @@ To fill up these gaps, I would like to get to know these technologies better by 
 
 ## 🏗️ Components to build
 - [ ] 🚧 [Load balancer](https://github.com/aritra1999/synergy/tree/master/load-balancer) 
-    - [ ] With rate limiting maybe
-- [ ] 🚧 Database 
-    - [ ] 🚧 [Relational database - SQLite / Postgres / MySQL](https://github.com/aritra1999/synergy/tree/master/relational-db)
-    - [ ] Document databases / NoSQL - MonogoDB / DynamoDB
-- [ ] 🚧 Search engines - Lucene / Elastic search (https://github.com/aritra1999/synergy/tree/master/load-balancer) 
+- [ ] 🚧 [gordb](https://github.com/aritra1999/synergy/tree/master/gordb) - Relational database - SQLite / Postgres / MySQL
+- [ ] 🚧 [scout](https://github.com/aritra1999/synergy/tree/master/scout) - Document-based search engine - Lucene / Elastic search 
+- [ ] Version Control - Git 
+- [ ] Document databases / NoSQL - MonogoDB / DynamoDB
 - [ ] Message Queue (Brokers) - Kafka
-- [ ] Version Controll - Git 
 - [ ] Caching services - Redis
 - [ ] Compression Library
 - [ ] Nginx
