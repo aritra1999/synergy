@@ -6,6 +6,31 @@ import (
 	"strings"
 )
 
+func (table *Table) Validate() error {
+	if err := ValidateTableName(table.Name); err != nil {
+		return err
+	}
+
+	for _, column := range table.Columns {
+		if err := column.Validate(); err != nil {
+			return err
+		}
+	}
+
+	return nil
+}
+
+func ValidateTableName(tableName string) error {
+	if tableName == "" {
+		return fmt.Errorf("table name cannot be empty")
+	}
+
+	if len(tableName) > 50 {
+		return fmt.Errorf("table name cannot be more than 50 characters")
+	}
+
+	return nil
+}
 
 func (columns *Column) Validate() error {
 	if err := ValidateColumnName(columns.Name); err != nil {
