@@ -6,6 +6,13 @@ import (
 	"strings"
 )
 
+func ProcessTableName(tableName string) string {
+	lowerCaseTableName := strings.ToLower(tableName)
+	replacedCharsTableName := strings.ReplaceAll(lowerCaseTableName, " ", "_")
+
+	return replacedCharsTableName
+}
+
 func (table *Table) Validate() error {
 	if err := ValidateTableName(table.Name); err != nil {
 		return err

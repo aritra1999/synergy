@@ -144,3 +144,21 @@ func TestValidate(t *testing.T) {
 
 	})
 }
+
+func TestProcessTableName(t *testing.T) {
+	g := Goblin(t)
+	g.Describe("ProcessTableName", func() {
+		g.It("Should return table name in lowercase", func() {
+			tableName := "Table1"
+			result := schema.ProcessTableName(tableName)
+			g.Assert(result).Equal("table1")
+		})
+
+		g.It("Should return table name with spaces replaced with underscores", func() {
+			tableName := "Table 1"
+			result := schema.ProcessTableName(tableName)
+			g.Assert(result).Equal("table_1")
+		})
+
+	})
+}
