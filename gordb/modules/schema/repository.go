@@ -1,5 +1,35 @@
 package schema
 
+func GetMeta() []Meta {
+	content, err := commons.ReadFile("meta.json")
+	if err != nil {
+		return []Meta{}
+	}
+
+	var meta []Meta
+
+	if err := json.Unmarshal(content, &meta); err != nil {
+		return []Meta{}
+	}
+
+	return meta
+}
+
+func UpdateMeta(updatedMeta []Meta) error {
+	return commons.WriteFile("meta.json", updatedMeta)
+}
+
+func MetaContains(meta []Meta, tableName string) bool {
+	for _, table := range meta {
+		if table.TableName == tableName {
+			return true
+		}
+	}
+
+	return false
+}
+
+
 func GetTables() []Table {
 	return []Table{
 		{
