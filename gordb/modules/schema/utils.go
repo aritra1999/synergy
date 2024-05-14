@@ -36,6 +36,10 @@ func ValidateTableName(tableName string) error {
 		return fmt.Errorf("table name cannot be more than 50 characters")
 	}
 
+	if strings.ContainsAny(tableName, "!@#$%^&*()_+{}|:<>?") {
+		return fmt.Errorf("table name cannot contain special characters")
+	}
+
 	return nil
 }
 

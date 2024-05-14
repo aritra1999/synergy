@@ -114,18 +114,18 @@ func TestValidate(t *testing.T) {
 			g.Assert(err).Equal(fmt.Errorf("column name cannot be empty"))
 		})
 
-		g.It("Should return error if column type is invalid", func() {
+		g.It("Should return error if table name contains special characters", func() {
 			table := schema.Table{
-				Name: "table1",
+				Name: "table!1",
 				Columns: []schema.Column{
 					{
 						Name: "column1",
-						Type: "invalid",
+						Type: "string",
 					},
 				},
 			}
 			err := table.Validate()
-			g.Assert(err).Equal(fmt.Errorf("column type is invalid"))
+			g.Assert(err).Equal(fmt.Errorf("table name cannot contain special characters"))
 		})
 
 		g.It("Should return error if column name contains spaces", func() {
@@ -141,7 +141,6 @@ func TestValidate(t *testing.T) {
 			err := table.Validate()
 			g.Assert(err).Equal(fmt.Errorf("column name cannot contain spaces"))
 		})
-
 	})
 }
 
