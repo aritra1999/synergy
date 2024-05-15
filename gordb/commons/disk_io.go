@@ -47,7 +47,7 @@ func WriteFile(fileName string, content any) error {
 		}
 	}
 
-	file, err := os.OpenFile(filePath, os.O_WRONLY, 0644)
+	file, err := os.OpenFile(filePath, os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0755)
 	if err != nil {
 		return err
 	}
