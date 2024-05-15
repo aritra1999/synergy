@@ -21,4 +21,6 @@
 go.work
 
 .idea
-gordb/store/tables/*
+gordb/store/*
+gordb/tmp/main
+gordb/tmp/build-errors.log
