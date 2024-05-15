@@ -39,86 +39,200 @@ func TestRepository(t *testing.T) {
 		})
 	})
 
-	// g.Describe("Add", func() {
-	// 	g.Describe("[Happy Case]", func() {
-	// 		g.It("Should create table with the given schema and columns", func() {
-	// 			table := schema.Table{
-	// 				Name: "Table 1",
-	// 				Columns: []schema.Column{
-	// 					{
-	// 						Name: "column1",
-	// 						Type: "string",
-	// 					},
-	// 					{
-	// 						Name: "column2",
-	// 						Type: "int",
-	// 					},
-	// 				},
-	// 			}
+	g.Describe("Add", func() {
+		g.Describe("[Happy Case]", func() {
+			g.It("Should create table with the given schema and columns", func() {
+				table := schema.Table{
+					Name: "Table 1",
+					Columns: []schema.Column{
+						{
+							Name: "column1",
+							Type: "string",
+						},
+						{
+							Name: "column2",
+							Type: "int",
+						},
+					},
+				}
 
-	// 			response := table.Add()
-	// 			expected := schema.TableRepoResponse{
-	// 				Name:    "Table 1",
-	// 				Path:    "/store/schema/table_1",
-	// 				Message: "Successfully created table Table 1",
-	// 			}
+				response := table.Add()
+				expected := schema.TableRepoResponse{
+					Name:    "Table 1",
+					Path:    "/store/table/table_1.json",
+					Message: "Successfully created table Table 1",
+				}
 
-	// 			g.Assert(response).Equal(expected)
-	// 		})
-	// 	})
+				g.Assert(response).Equal(expected)
+			})
+		})
 
-	// 	g.Describe("[Error Case]", func() {
-	// 		g.It("Should throw an error if table name is empty", func() {
+		g.Describe("[Error Case]", func() {
+			g.It("Should throw an error if table name is empty", func() {
 
-	// 			table := schema.Table{
-	// 				Name: "",
-	// 				Columns: []schema.Column{
-	// 					{
-	// 						Name: "column1",
-	// 						Type: "string",
-	// 					},
-	// 					{
-	// 						Name: "column2",
-	// 						Type: "int",
-	// 					},
-	// 				},
-	// 			}
+				table := schema.Table{
+					Name: "",
+					Columns: []schema.Column{
+						{
+							Name: "column1",
+							Type: "string",
+						},
+						{
+							Name: "column2",
+							Type: "int",
+						},
+					},
+				}
 
-	// 			response := table.Add()
-	// 			expected := schema.TableRepoResponse{
-	// 				Name:    "",
-	// 				Message: "Invalid table name",
-	// 				Error:   "table name cannot be empty",
-	// 			}
+				response := table.Add()
+				expected := schema.TableRepoResponse{
+					Name:    "",
+					Message: "Invalid table name",
+					Error:   "table name cannot be empty",
+				}
 
-	// 			g.Assert(response).Equal(expected)
-	// 		})
+				g.Assert(response).Equal(expected)
+			})
 
-	// 		g.It("Should throw an error if table name is more than 50 characters", func() {
-	// 			table := schema.Table{
-	// 				Name: "This is a table name that is more than 50 characters",
-	// 				Columns: []schema.Column{
-	// 					{
-	// 						Name: "column1",
-	// 						Type: "string",
-	// 					},
-	// 					{
-	// 						Name: "column2",
-	// 						Type: "int",
-	// 					},
-	// 				},
-	// 			}
+			g.It("Should throw an error if table name is more than 50 characters", func() {
+				table := schema.Table{
+					Name: "This is a table name that is more than 50 characters",
+					Columns: []schema.Column{
+						{
+							Name: "column1",
+							Type: "string",
+						},
+						{
+							Name: "column2",
+							Type: "int",
+						},
+					},
+				}
 
-	// 			response := table.Add()
-	// 			expected := schema.TableRepoResponse{
-	// 				Name:    "This is a table name that is more than 50 characters",
-	// 				Message: "Invalid table name",
-	// 				Error:   "table name cannot be more than 50 characters",
-	// 			}
+				response := table.Add()
+				expected := schema.TableRepoResponse{
+					Name:    "This is a table name that is more than 50 characters",
+					Message: "Invalid table name",
+					Error:   "table name cannot be more than 50 characters",
+				}
 
-	// 			g.Assert(response).Equal(expected)
-	// 		})
+				g.Assert(response).Equal(expected)
+			})
 
-	// 	})
-	// })
+		})
+	})
+
+	g.Describe("AddTables", func() {
+		g.Describe("[Happy Case]", func() {
+			g.It("Should add tables to the meta", func() {
+				tables := []schema.Table{
+					{
+						Name: "Table 1",
+						Columns: []schema.Column{
+							{
+								Name: "column1",
+								Type: "string",
+							},
+							{
+								Name: "column2",
+								Type: "int",
+							},
+						},
+					},
+					{
+						Name: "Table 2",
+						Columns: []schema.Column{
+							{
+								Name: "column1",
+								Type: "string",
+							},
+							{
+								Name: "column2",
+								Type: "int",
+							},
+						},
+					},
+				}
+
+				response, err := schema.AddTables(tables)
+				expected := []schema.TableRepoResponse{
+					{
+						Name:    "Table 1",
+						Path:    "/store/table/table_1.json",
+						Message: "Successfully created table Table 1",
+					},
+					{
+						Name:    "Table 2",
+						Path:    "/store/table/table_2.json",
+						Message: "Successfully created table Table 2",
+					},
+				}
+
+				g.Assert(response).Equal(expected)
+				g.Assert(err).Equal(nil)
+			})
+		})
+
+		g.Describe("[Error Case]", func() {
+			g.It("Should throw an error if table name is empty", func() {
+				tables := []schema.Table{
+					{
+						Name: "",
+						Columns: []schema.Column{
+							{
+								Name: "column1",
+								Type: "string",
+							},
+							{
+								Name: "column2",
+								Type: "int",
+							},
+						},
+					},
+				}
+
+				response, err := schema.AddTables(tables)
+				expected := []schema.TableRepoResponse{
+					{
+						Name:    "",
+						Message: "Invalid table name",
+						Error:   "table name cannot be empty",
+					},
+				}
+
+				g.Assert(response).Equal(expected)
+				g.Assert(err).Equal(nil)
+			})
+
+			g.It("Should throw an error if table name is more than 50 characters", func() {
+				tables := []schema.Table{
+					{
+						Name: "This is a table name that is more than 50 characters",
+						Columns: []schema.Column{
+							{
+								Name: "column1",
+								Type: "string",
+							},
+							{
+								Name: "column2",
+								Type: "int",
+							},
+						},
+					},
+				}
+
+				response, err := schema.AddTables(tables)
+				expected := []schema.TableRepoResponse{
+					{
+						Name:    "This is a table name that is more than 50 characters",
+						Message: "Invalid table name",
+						Error:   "table name cannot be more than 50 characters",
+					},
+				}
+
+				g.Assert(response).Equal(expected)
+				g.Assert(err).Equal(nil)
+			})
+		})
+	})
 }
