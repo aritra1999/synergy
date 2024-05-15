@@ -6,8 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func GetSchemaController(c *gin.Context) {
-
+func GetTableController(c *gin.Context) {
 	c.String(http.StatusOK, "Working!")
 }
 
@@ -28,12 +27,12 @@ func PostTableController(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"tables": tableResponse})
 }
 
-func PutSchemaController(c *gin.Context) {
+func PutTableController(c *gin.Context) {
 
 	c.String(http.StatusOK, "Working!")
 }
 
-func DeleteSchemaController(c *gin.Context) {
+func DeleteTableController(c *gin.Context) {
 
 	c.String(http.StatusOK, "Working!")
 }
