@@ -11,9 +11,21 @@ func GetSchemaController(c *gin.Context) {
 	c.String(http.StatusOK, "Working!")
 }
 
-func PostSchemaController(c *gin.Context) {
+func PostTableController(c *gin.Context) {
+	var tables []Table
 
-	c.String(http.StatusOK, "Working!")
+	if err := c.ShouldBindJSON(&tables); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	tableResponse, err := AddTables(tables)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"tables": tableResponse})
 }
 
 func PutSchemaController(c *gin.Context) {
