@@ -6,8 +6,8 @@ import (
 )
 
 // - store
+//	- meta.json
 // 	- tables
-// 		- schema.json
 // 		- table1.json
 // 		- table2.json
 // 	- data
@@ -26,14 +26,14 @@ func CheckDirs() {
 		os.Mkdir("store/tables", 0755)
 	}
 
-	// check if schema.json exists
-	if _, err := os.Stat("store/tables/schema.json"); os.IsNotExist(err) {
-		fmt.Println("Creating store/tables/schema.json file...")
-		os.Create("store/tables/schema.json")
-	}
-
 	if _, err := os.Stat("store/data"); os.IsNotExist(err) {
 		fmt.Println("Creating store/data directory...")
 		os.Mkdir("store/data", 0755)
 	}
+
+	if _, err := os.Stat("store/meta.json"); os.IsNotExist(err) {
+		fmt.Println("Creating store/meta.json file...")
+		os.Create("store/meta.json")
+	}
+
 }
