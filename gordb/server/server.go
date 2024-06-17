@@ -7,7 +7,6 @@ import (
 	"gordb/modules/schema"
 
 	"github.com/gin-gonic/gin"
-	// "gordb/middlewares"
 )
 
 func Init() *gin.Engine {
@@ -21,10 +20,10 @@ func Init() *gin.Engine {
 
 	router.GET("/health", health.HealthController)
 
-	router.GET("/schema", schema.GetSchemaController)
-	router.POST("/schema", schema.PostSchemaController)
-	router.PUT("/schema", schema.PutSchemaController)
-	router.DELETE("/schema", schema.DeleteSchemaController)
+	router.GET("/table", schema.GetTableController)
+	router.POST("/table", schema.PostTableController)
+	router.PUT("/table", schema.PutTableController)
+	router.DELETE("/table", schema.DeleteTableController)
 
 	router.POST("/query", query.QueryController)
 
