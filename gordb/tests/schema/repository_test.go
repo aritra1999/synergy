@@ -1,16 +1,61 @@
 package tests
 
 import (
+	"encoding/json"
+	"gordb/commons"
 	"gordb/modules/schema"
+	"os"
+	"path/filepath"
 	"testing"
 
 	. "github.com/franela/goblin"
 )
 
 func TestRepository(t *testing.T) {
-	g := Goblin(t)
+	var (
+		g             = Goblin(t)
+		storePath     = commons.GetStorePath()
+		testStorePath = filepath.Join(storePath, "test")
+		dummyObj      = map[string]string{"key": "value"}
+	)
+
+	var dummyContent, err = json.Marshal(dummyObj)
+	if err != nil {
+		t.Errorf("Debug: %s", err)
+	}
+
+	var setUp = func() {
+		if err := os.Mkdir(storePath, 0755); err != nil && !os.IsExist(err) {
+			t.Errorf("%s", err)
+		}
+
+		if err := os.Mkdir(testStorePath, 0755); err != nil && !os.IsExist(err) {
+			t.Errorf("%s", err)
+		}
+
+		if err := os.Mkdir(filepath.Join(testStorePath, "table"), 0755); err != nil && !os.IsExist(err) {
+			t.Errorf("%s", err)
+		}
+
+		if err := os.Mkdir(filepath.Join(testStorePath, "data"), 0755); err != nil && !os.IsExist(err) {
+			t.Errorf("%s", err)
+		}
+
+		if err := os.WriteFile(filepath.Join(testStorePath, "test.json"), dummyContent, 0644); err != nil && !os.IsExist(err) {
+			t.Errorf("%s", err)
+		}
+	}
+
+	var tearDown = func() {
+		// if err := os.RemoveAll(testStorePath); err != nil {
+		// 	t.Errorf("%s", err)
+		// }
+	}
 
 	g.Describe("MetaContains", func() {
+		g.BeforeEach(setUp)
+		g.AfterEach(tearDown)
+
 		g.It("Should return true if the table name exists in the meta", func() {
 			meta := []schema.Meta{
 				{
@@ -41,6 +86,9 @@ func TestRepository(t *testing.T) {
 
 	g.Describe("Add", func() {
 		g.Describe("[Happy Case]", func() {
+			g.BeforeEach(setUp)
+			g.AfterEach(tearDown)
+
 			g.It("Should create table with the given schema and columns", func() {
 				table := schema.Table{
 					Name: "Table 1",
@@ -68,6 +116,9 @@ func TestRepository(t *testing.T) {
 		})
 
 		g.Describe("[Error Case]", func() {
+			g.BeforeEach(setUp)
+			g.AfterEach(tearDown)
+
 			g.It("Should throw an error if table name is empty", func() {
 
 				table := schema.Table{
@@ -124,6 +175,9 @@ func TestRepository(t *testing.T) {
 
 	g.Describe("AddTables", func() {
 		g.Describe("[Happy Case]", func() {
+			g.BeforeEach(setUp)
+			g.AfterEach(tearDown)
+
 			g.It("Should add tables to the meta", func() {
 				tables := []schema.Table{
 					{
@@ -174,6 +228,9 @@ func TestRepository(t *testing.T) {
 		})
 
 		g.Describe("[Error Case]", func() {
+			g.BeforeEach(setUp)
+			g.AfterEach(tearDown)
+
 			g.It("Should throw an error if table name is empty", func() {
 				tables := []schema.Table{
 					{
